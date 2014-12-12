@@ -13,7 +13,7 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -21,9 +21,9 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'ervandew/supertab'
 
 " The bundles you install will be listed here
 
@@ -35,6 +35,7 @@ augroup vimrc_autocmds
   autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
   autocmd FileType python match Excess /\%120v.*/
   autocmd FileType python set nowrap
+  autocmd FileType python setlocal completeopt-=preview
 augroup END
 
 " Powerline Setup
@@ -69,14 +70,14 @@ map <F2> : NERDTreeToggle<CR>
 let g:pymode_rope = 0
 "
 " Documentation
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
+let g:pymode_doc = 0
+let g:pymode_doc_bind = 'K'
 "
 "Linting
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
 " Auto check on save
-let g:pymode_lint_write = 1
+let g:pymode_lint_on_write = 0
 "
 " Support virtualenv
 let g:pymode_virtualenv = 1
@@ -97,5 +98,9 @@ let g:pymode_folding = 0
 " No more 80
 let g:pymode_options_colorcolumn = 0
 
+" Jedi
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#popup_select_first = 1
+
+
 set nonumber
-let mapleader = '-'
